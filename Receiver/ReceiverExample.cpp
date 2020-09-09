@@ -9,7 +9,10 @@ int main(int argc, char* argv[])
 	while (getline(cin, line))
 	{
 		if (line == "")
+		{
+			cout<<"Cin input over"<<endl;
 			break;
+		}
 		cout << line << endl;
 	}
   return 0;
