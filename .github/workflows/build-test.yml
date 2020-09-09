@@ -17,10 +17,10 @@ jobs:
     - name: install cppcheck static analysis
       run: sudo apt-get update && sudo apt-get install -y cppcheck
       
-    - name: build SenderExample
+    - name: build Sender
       run: g++ -Wall -Wextra -Werror --coverage -o SenderExe Sender/Sender.cpp
       
-    - name: build ReceiverExample
+    - name: build Receiver
       run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExe Receiver/Receiver.cpp
       
     - name: static analysis
@@ -29,5 +29,8 @@ jobs:
     - name: run
       run: ./SenderExe | ./ReceiverExe
     
-    - name: coverage report
-      run: gcov -r *.cpp
+    - name: coverage report Sender
+      run: gcov -r Sender/Sender.cpp
+      
+    - name: coverage report Receiver
+      run: gcov -r Receiver/Receiver.cpp
