@@ -3,8 +3,6 @@ name: Build and Run
 on:
   push:
     branches: [ master ]
-    paths: 
-      - "**.cpp"
   pull_request:
     branches: [ master ]
 
