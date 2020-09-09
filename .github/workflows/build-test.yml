@@ -22,16 +22,16 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y cppcheck
       
     - name: build SenderExample
-      run: g++ -Wall -Wextra -Werror --coverage -o SenderExample SenderExample.cpp
+      run: g++ -Wall -Wextra -Werror --coverage -o SenderExe Sender/Sender.cpp
       
     - name: build ReceiverExample
-      run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExample ReceiverExample.cpp
+      run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExe Receiver/Receiver.cpp
       
     - name: static analysis
       run: cppcheck --enable=all --error-exitcode=1 .
       
     - name: run
-      run: ./SenderExample
+      run: ./SenderExe | ./ReceiverExe
     
     - name: coverage report
       run: gcov -r *.cpp
