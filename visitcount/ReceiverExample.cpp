@@ -14,6 +14,7 @@ int main()
 			cout<<"Cin input over"<<endl;
 			break;
 		}
+		cout << "Printing sender message in receiver" << endl;
 		cout << line << endl;
 	}
   return 0;
