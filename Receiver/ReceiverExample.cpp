@@ -6,6 +6,7 @@ using namespace std;
 int main()
 {
 	string line = "";
+	cout<<"In receiver main"<<endl;
 	while (getline(cin, line))
 	{
 		if (line == "")
