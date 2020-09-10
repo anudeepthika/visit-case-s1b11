@@ -6,14 +6,6 @@
 #include<sstream>
 #include <algorithm>
 #include "Sender.h"
-bool isnumber(std::string s)
-{
-    for (unsigned int i = 0; i < s.length(); i++)
-		if (isdigit(s[i]) == false)
-			return false;
-
-	return true;    
-}
 
 std::vector<std::vector<std::string> > CSVReader::fetchData()
 {
@@ -37,20 +29,46 @@ std::vector<std::vector<std::string> > CSVReader::fetchData()
         {
             // add all the column data
             // of a row to a vector vec
-            if(isnumber(data)==true)
+            //if(isnumber(data)==true)
             vec.push_back(data);
         }
-        if(vec.size()==8)
+        //if(vec.size()==8)
         dataList.push_back(vec);
      }
     file.close();
     return dataList;
 }
-void printdata(std::vector<std::vector<std::string>> &dataList)
+bool isnumber(std::string s)
 {
-      for (std::vector<std::string> vec : dataList)
+    for (unsigned int i = 0; i < s.length(); i++)
+		if (isdigit(s[i]) == false)
+			return false;
+
+	return true;    
+}
+
+std::vector<std::vector<int>> removeinvalidentries(std::vector<std::vector<std::string>>& actualdata)
+{
+	std::vector<std::vector<int>> validdata;
+	for(std::vector<std::string> vec:actualdata)
+	{
+		std::vector<int> rowvector;
+		for (std::string data : vec)
+       		 {
+            		if(isnumber(data)==true)
+				rowvector.push_back(stoi(data));
+        	 }
+	if(rowvector.size()==8)
+		validdata.push_back(rowvector);
+	}
+	return validdata;
+}
+
+void printdata(std::vector<std::vector<int>> &data)
+{
+      for (std::vector<int> vec : dataList)
     {
-        for (std::string data : vec)
+        for (int data : vec)
         {
             std::cout << data << ",";
         }
@@ -62,9 +80,10 @@ int main()
     // Creating an object of CSVfile reader
     CSVReader filereader("test-data/visitdata1.csv",",");
     // Get the data from CSV File
-    std::vector<std::vector<std::string> > dataList = filereader.fetchData();
+    std::vector<std::vector<std::string>> actualdata  = filereader.fetchData();
+    std::vector<std::vector<int>> validData  = removeinvalidentries(actualdata); //removes rows containing empty data or non-integer data
     // Print the content
     
-    printdata(dataList);
+    printdata(validData);
     return 0;
 }
