@@ -49,6 +49,7 @@ void printdata(std::vector<std::vector<std::string>> &dataList)
             std::cout << data << ",";
         }
         std::cout << std::endl; 
+     }
 }
 int main()
 {
