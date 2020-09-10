@@ -52,7 +52,7 @@ std::vector<std::vector<std::string> > CSVReader::fetchData()
 int main()
 {
     // Creating an object of CSVWriter
-    CSVReader filereader("test-data/visitdata1.csv");
+    CSVReader filereader("test-data/visitdata1.csv",",");
     // Get the data from CSV File
     std::vector<std::vector<std::string> > dataList = filereader.fetchData();
     // Print the content of row by row on screen
