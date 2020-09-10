@@ -62,7 +62,7 @@ std::vector<int> getrow(std::vector<std::string>& vec)
 std::vector<std::vector<int>> removeinvalidentries(std::vector<std::vector<std::string>>& actualdata)
 {
 	std::vector<std::vector<int>> validdata;
-	int noOfcolumns = actualdata.size();
+	int noOfcolumns = actualdata[0].size();
 	for(std::vector<std::string> vec:actualdata)
 	{
 		std::vector<int> rowvector = getrow(vec);
