@@ -66,11 +66,11 @@ std::vector<std::vector<int>> removeinvalidentries(std::vector<std::vector<std::
 
 void printdata(std::vector<std::vector<int>> &data)
 {
-      for (std::vector<int> vec : dataList)
+      for (std::vector<int> vec : data)
     {
-        for (int data : vec)
+        for (int rowdata : vec)
         {
-            std::cout << data << ",";
+            std::cout << rowdata << ",";
         }
         std::cout << std::endl; 
      }
