@@ -59,13 +59,13 @@ std::vector<int> getrow(std::vector<std::string>& vec)
 }
 
 
-std::vector<std::vector<int>> removeinvalidentries(std::vector<std::vector<std::string>>& actualdata)
+std::vector<std::vector<int>> removeinvalidentries(std::vector<std::vector<std::string>>& actualdata,int noOfactualcolumns)
 {
 	std::vector<std::vector<int>> validdata;
 	for(std::vector<std::string> vec:actualdata)
 	{
 		std::vector<int> rowvector = getrow(vec);
-	if(rowvector.size()==8)
+	if(rowvector.size()==noOfactualcolumns)
 		validdata.push_back(rowvector);
 	}
 	return validdata;
@@ -88,7 +88,7 @@ int main()
     CSVReader filereader("test-data/visitdata1.csv",",");
     // Get the data from CSV File
     std::vector<std::vector<std::string>> actualdata  = filereader.fetchData();
-    std::vector<std::vector<int>> validData  = removeinvalidentries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
+    std::vector<std::vector<int>> validData  = removeinvalidentries(actualdata,actualdata[0].size()); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
     
     printdata(validData);
