@@ -29,15 +29,14 @@ std::vector<std::vector<std::string> > CSVReader::fetchData()
         {
             // add all the column data
             // of a row to a vector vec
-            //if(isnumber(data)==true)
             vec.push_back(data);
         }
-        //if(vec.size()==8)
         dataList.push_back(vec);
      }
     file.close();
     return dataList;
 }
+
 bool isnumber(std::string s)
 {
     for (unsigned int i = 0; i < s.length(); i++)
@@ -47,10 +46,10 @@ bool isnumber(std::string s)
 	return true;    
 }
 
-std::vector<int> getrow(std::vector<std::string>& vec)
+std::vector<int> getrow(std::vector<std::string>& rowvec)
 {
 	std::vector<int> row;
-	for (std::string data : vec)
+	for (std::string data : rowvec)
        		 {
             		if(isnumber(data)==true)
 			row.push_back(stoi(data));
