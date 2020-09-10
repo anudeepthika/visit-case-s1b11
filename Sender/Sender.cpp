@@ -16,7 +16,7 @@ std::vector<std::vector<std::string> > CSVReader::fetchData()
     // Iterate through each line and split the content using delimeter
     file.open(fileName);
     getline(file,line);
-    cout<<line<<endl;
+    std::cout<<line<<std::endl;
     while (getline(file, line))
     {
         // used for breaking words
