@@ -47,17 +47,29 @@ bool isnumber(std::string s)
 	return true;    
 }
 
+std::vector<int> getrow(std::vector<std::string>& vec)
+{
+	std::vector<int> row;
+	for (std::string data : vec)
+       		 {
+            		if(isnumber(data)==true)
+				row.push_back(stoi(data));
+        	 }
+	return row;
+}
+
+
 std::vector<std::vector<int>> removeinvalidentries(std::vector<std::vector<std::string>>& actualdata)
 {
 	std::vector<std::vector<int>> validdata;
 	for(std::vector<std::string> vec:actualdata)
 	{
-		std::vector<int> rowvector;
-		for (std::string data : vec)
+		std::vector<int> rowvector = getrow(vec);
+		/*for (std::string data : vec)
        		 {
             		if(isnumber(data)==true)
 				rowvector.push_back(stoi(data));
-        	 }
+        	 }*/
 	if(rowvector.size()==8)
 		validdata.push_back(rowvector);
 	}
@@ -81,7 +93,7 @@ int main()
     CSVReader filereader("test-data/visitdata1.csv",",");
     // Get the data from CSV File
     std::vector<std::vector<std::string>> actualdata  = filereader.fetchData();
-    std::vector<std::vector<int>> validData  = removeinvalidentries(actualdata); //removes rows containing empty data or non-integer data
+    std::vector<std::vector<int>> validData  = removeinvalidentries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
     
     printdata(validData);
