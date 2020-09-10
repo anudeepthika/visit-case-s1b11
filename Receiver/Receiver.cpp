@@ -76,14 +76,14 @@ void Receiver::averageFootfallsPerHourDaily()
 }
 
 void Receiver::displayhourlyAverageDailyData(vector<Receiver> hourlyAverageDailyData)
-{	fstream fout; 
- 	fout.open("stats-data/avgperhour.csv", ios::out | ios::app);
-	fout<<"Date"<<","<<"Month"<<","<<"Year"<<","<<"Hourly Avg"<<"\n";
+{	//fstream fout; 
+ 	//cout.open("stats-data/avgperhour.csv", ios::out | ios::app);
+	cout<<"Date"<<" "<<"Month"<<" "<<"Year"<<" "<<"Hourly Avg"<<endl;
 	for(unsigned int i = 0; i < hourlyAverageDailyData.size(); i++)
 	{
-		fout<<hourlyAverageDailyData[i].date<<","<<hourlyAverageDailyData[i].month<<","<<hourlyAverageDailyData[i].year<<","<<hourlyAverageDailyData[i].hourlyAverage<<"\n";
+		cout<<hourlyAverageDailyData[i].date<<" "<<hourlyAverageDailyData[i].month<<" "<<hourlyAverageDailyData[i].year<<" "<<hourlyAverageDailyData[i].hourlyAverage<<endl;
 	}
- 	fout.close();
+ 	
 }
 
 int main()
