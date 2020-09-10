@@ -6,6 +6,14 @@
 #include<sstream>
 #include <algorithm>
 #include "Sender.h"
+bool isnumber(string s)
+{
+    for (unsigned int i = 0; i < s.length(); i++)
+		if (isdigit(s[i]) == false)
+			return false;
+
+	return true;    
+}
 
 std::vector<std::vector<std::string> > CSVReader::fetchData()
 {
@@ -25,11 +33,14 @@ std::vector<std::vector<std::string> > CSVReader::fetchData()
         // read every column data of a row and
         // store it in a string variable, 'word'
         std::vector<std::string> vec;
-        while (getline(str, data, ',')) {
+        while (getline(str, data, ','))
+        {
             // add all the column data
             // of a row to a vector vec
+            if(isnumber(data)==true)
             vec.push_back(data);
         }
+        if(vec.size()==8)
         dataList.push_back(vec);
      }
     file.close();
@@ -53,6 +64,7 @@ int main()
     // Get the data from CSV File
     std::vector<std::vector<std::string> > dataList = filereader.fetchData();
     // Print the content
+    
     printdata(dataList);
     return 0;
 }
