@@ -40,6 +40,16 @@ std::vector<std::vector<std::string> > CSVReader::fetchData()
     file.close();
     return dataList;
 }
+void printdata(std::vector<std::vector<std::string>> &dataList)
+{
+      for (std::vector<std::string> vec : dataList)
+    {
+        for (std::string data : vec)
+        {
+            std::cout << data << ",";
+        }
+        std::cout << std::endl; 
+}
 int main()
 {
     // Creating an object of CSVWriter
@@ -47,13 +57,14 @@ int main()
     // Get the data from CSV File
     std::vector<std::vector<std::string> > dataList = filereader.fetchData();
     // Print the content of row by row on screen
-    for (std::vector<std::string> vec : dataList)
+    /*for (std::vector<std::string> vec : dataList)
     {
         for (std::string data : vec)
         {
             std::cout << data << ",";
         }
         std::cout << std::endl;
-    }
+    }*/
+    printdata(dataList);
     return 0;
 }
