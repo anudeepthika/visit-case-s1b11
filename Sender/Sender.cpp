@@ -81,7 +81,7 @@ void printValiddata(std::vector<std::vector<int>> &data)
         std::cout << std::endl; 
      }
 }
-void fetchValidateandPrintFootfallData(std::string filename)
+bool fetchValidateandPrintFootfallData(std::string filename)
 {	
    // Creating an object of CSVfile reader
 	CSVReader filereader(filename,",");
@@ -89,11 +89,18 @@ void fetchValidateandPrintFootfallData(std::string filename)
     std::vector<std::vector<std::string>> actualdata  = filereader.fetchActualFootfallData();
     std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
-    
     printValiddata(validData);
+	std::vector<std::vector<int>> test1 = {{1,9,10,8,6,1,8,2020},
+                                      {2,9,20,33,6,1,8,2020},
+                                       {3,9,30,34,6,1,8,2020},
+                                        {4,10,22,27,6,1,8,2020}};	
+    return {std::equal(validData.begin(), validData.end(), test1.begin())};
+	
+    
 }
+
 int main()
 {
-    fetchValidateandPrintFootfallData("test-data/samplevisit1.csv");
+    std::cout<<fetchValidateandPrintFootfallData("test-data/samplevisit1.csv")<<std::endl;
     return 0;
 }
