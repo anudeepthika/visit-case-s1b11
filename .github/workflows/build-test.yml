@@ -21,7 +21,7 @@ jobs:
       run: g++ -Wall -Wextra -Werror --coverage -o SenderExe Sender/*.cpp
       
     - name: build Receiver
-      run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExe Receiver/Receiver.cpp
+      run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExe Receiver/*.cpp
       
     - name: static analysis
       run: cppcheck --enable=all --error-exitcode=1 .
