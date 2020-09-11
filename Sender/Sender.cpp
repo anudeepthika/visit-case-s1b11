@@ -7,7 +7,7 @@
 #include <algorithm>
 #include "Sender.h"
 
-std::vector<std::vector<std::string> > CSVReader::fetchData()
+std::vector<std::vector<std::string> > CSVReader::fetchActualFootfallData()
 {
     std::fstream file;
     std::vector<std::vector<std::string> > dataList;
@@ -70,7 +70,7 @@ std::vector<std::vector<int>> removeinvalidentries(std::vector<std::vector<std::
 	return validdata;
 }
 
-void printdata(std::vector<std::vector<int>> &data)
+void printValiddata(std::vector<std::vector<int>> &data)
 {
       for (std::vector<int> vec : data)
     {
@@ -81,26 +81,19 @@ void printdata(std::vector<std::vector<int>> &data)
         std::cout << std::endl; 
      }
 }
-void mainfunction(std::string filename)
-{
+void fetchValidateandPrintFootfallData(std::string filename)
+{	
+   // Creating an object of CSVfile reader
 	CSVReader filereader(filename,",");
     // Get the data from CSV File
-    std::vector<std::vector<std::string>> actualdata  = filereader.fetchData();
+    std::vector<std::vector<std::string>> actualdata  = filereader.fetchActualFootfallData();
     std::vector<std::vector<int>> validData  = removeinvalidentries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
     
-    printdata(validData);
+    printValiddata(validData);
 }
 int main()
 {
-   /* // Creating an object of CSVfile reader
-    CSVReader filereader("test-data/visitdata1.csv",",");
-    // Get the data from CSV File
-    std::vector<std::vector<std::string>> actualdata  = filereader.fetchData();
-    std::vector<std::vector<int>> validData  = removeinvalidentries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
-    // Print the content
-    
-    printdata(validData);*/
-	mainfunction("test-data/visitdata1.csv");
+    fetchValidateandPrintFootfallData("test-data/visitdata1.csv");
     return 0;
 }
