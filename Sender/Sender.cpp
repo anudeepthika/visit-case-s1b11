@@ -46,26 +46,26 @@ bool isnumber(std::string s)
 	return true;    
 }
 
-std::vector<int> getrow(std::vector<std::string>& rowvec)
+std::vector<int> getValidRow(std::vector<std::string>& rowvec)
 {
-	std::vector<int> row;
+	std::vector<int> validRow;
 	for (std::string data : rowvec)
        		 {
             		if(isnumber(data)==true)
-			row.push_back(stoi(data));
+			validRow.push_back(stoi(data));
         	 }
-	return row;
+	return validRow;
 }
 
 
-std::vector<std::vector<int>> removeinvalidentries(std::vector<std::vector<std::string>>& actualdata)
+std::vector<std::vector<int>> removeInvalidEntries(std::vector<std::vector<std::string>>& actualdata)
 {
 	std::vector<std::vector<int>> validdata;
 	for(std::vector<std::string> vec:actualdata)
 	{
-		std::vector<int> rowvector = getrow(vec);
+		std::vector<int> validentry = getValidRow(vec);
 	if(rowvector.size()==8)
-		validdata.push_back(rowvector);
+		validdata.push_back(validentry);
 	}
 	return validdata;
 }
@@ -87,7 +87,7 @@ void fetchValidateandPrintFootfallData(std::string filename)
 	CSVReader filereader(filename,",");
     // Get the data from CSV File
     std::vector<std::vector<std::string>> actualdata  = filereader.fetchActualFootfallData();
-    std::vector<std::vector<int>> validData  = removeinvalidentries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
+    std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
     
     printValiddata(validData);
