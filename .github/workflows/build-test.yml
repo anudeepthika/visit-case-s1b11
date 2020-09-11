@@ -18,7 +18,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y cppcheck
       
     - name: build Sender
-      run: g++ -Wall -Wextra -Werror --coverage -o SenderExe Sender/Sender.cpp
+      run: g++ -Wall -Wextra -Werror --coverage -o SenderExe Sender/*.cpp
       
     - name: build Receiver
       run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExe Receiver/Receiver.cpp
