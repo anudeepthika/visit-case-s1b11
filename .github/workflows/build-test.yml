@@ -26,6 +26,9 @@ jobs:
     - name: static analysis
       run: cppcheck --enable=all --error-exitcode=1 .
       
+    - name: run Sender
+      run: ./SenderExe
+      
     - name: run
       run: ./SenderExe | ./ReceiverExe
     
