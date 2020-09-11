@@ -81,7 +81,7 @@ void printdata(std::vector<std::vector<int>> &data)
         std::cout << std::endl; 
      }
 }
-void mainfunction(std::string& filename)
+void mainfunction(std::string filename)
 {
 	CSVReader filereader(filename,",");
     // Get the data from CSV File
