@@ -63,9 +63,9 @@ std::vector<std::vector<int>> removeInvalidEntries(std::vector<std::vector<std::
 	std::vector<std::vector<int>> validdata;
 	for(std::vector<std::string> vec:actualdata)
 	{
-		std::vector<int> validentry = getValidRow(vec);
-	if(rowvector.size()==8)
-		validdata.push_back(validentry);
+		std::vector<int> ValidRow = getValidRow(vec);
+	if(ValidRow.size()==8)
+		validdata.push_back(ValidRow);
 	}
 	return validdata;
 }
