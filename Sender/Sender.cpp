@@ -81,7 +81,7 @@ void printValiddata(std::vector<std::vector<int>> &data)
         std::cout << std::endl; 
      }
 }
-bool fetchValidateandPrintFootfallData(std::string filename)
+bool Test::fetchValidateandPrintFootfallData(std::string filename)
 {	
    // Creating an object of CSVfile reader
 	CSVReader filereader(filename,",");
