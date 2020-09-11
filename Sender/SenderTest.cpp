@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 
-#include "catch.hpp"
+#include "visit-case-s1b11/catch.hpp"
 #include "SenderHeader.h"
 #include<vector>
 #include <cmath>
