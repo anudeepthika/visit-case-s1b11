@@ -7,7 +7,7 @@
 
 TEST_CASE("when footfall data containing invalid data is read by sender then it prints the valid data") 
 {
-    bool b = Test::fetchValidateandPrintFootfallData("test-data/samplevisit1.csv");
+    suto b = Test::fetchValidateandPrintFootfallData("test-data/samplevisit1.csv");
     REQUIRE(b==true);
 }
 
