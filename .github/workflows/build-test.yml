@@ -13,18 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
-    - name: install cppcheck static analysis
-      run: sudo apt-get update && sudo apt-get install -y cppcheck
       
     - name: build SenderTest
       run: g++ -Wall -Wextra -Werror --coverage -o SenderTestExe Sender/*.cpp
       
     - name: build Receiver
       run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExe Receiver/Receiver.cpp
-    
-    - name: static analysis
-      run: cppcheck -iSender/catch.hpp --enable=all --error-exitcode=1 . 
       
     - name: run SenderTest
       run: ./SenderTestExe
