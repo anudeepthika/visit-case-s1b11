@@ -20,6 +20,9 @@ jobs:
     - name: build Sender
       run: g++ -Wall -Wextra -Werror --coverage -o SenderExe Sender/Sender.cpp
       
+    - name: build SenderTest
+      run: g++ -Wall -Wextra -Werror --coverage -o SenderTestExe Sender/*.cpp
+      
     - name: build Receiver
       run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExe Receiver/Receiver.cpp
       
@@ -28,6 +31,9 @@ jobs:
       
     - name: run Sender
       run: ./SenderExe
+      
+    - name: run SenderTest
+      run: ./SenderTestExe
       
     - name: run
       run: ./SenderExe | ./ReceiverExe
