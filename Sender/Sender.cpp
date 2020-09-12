@@ -100,7 +100,7 @@ bool Test::fetchValidateandPrintFootfallData(std::string filename,std::string ou
        	 	{
             	v.push_back(std::stoi(rowvec));
         	}
-        	intoutput.push_bak(v); 
+        	intoutput.push_back(v); 
   	}
     return {std::equal(validData.begin(), validData.end(), intoutput.begin())};
 	
