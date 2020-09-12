@@ -85,15 +85,30 @@ bool Test::fetchValidateandPrintFootfallData(std::string filename,std::string ou
 {	
    // Creating an object of CSVfile reader
 	CSVReader filereader1(filename,",");
-	CSVReader filereader2(outputname,",");
+	//CSVReader filereader2(outputname,",");
     // Get the data from CSV File
     std::vector<std::vector<std::string>> actualdata  = filereader1.fetchActualFootfallData();
     std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
     printValiddata(validData);
-	std::vector<std::vector<std::string>> output = 	filereader2.fetchActualFootfallData();
+	fstream fin;  
+        fin.open(outputname);
+	//std::vector<std::vector<std::string>> output = 	filereader2.fetchActualFootfallData();
 	std::vector<std::vector<int>> intoutput;
-	for (std::vector<std::string> vec : output)
+	std::string line1 = "";
+    	std::string data1 = "";
+	while (getline(fin, line1))
+    	{
+		std::stringstream str1(line1);
+		std::vector<int> vec;
+		while (getline(str1, data1, ','))
+		{
+		    vec.push_back(std::stoi(data1));
+		}
+		intoutput.push_back(vec);
+     	}
+    	fin.close();
+	/*for (std::vector<std::string> vec : output)
    	{
         	std::vector<int> v;
 		for (std::string rowvec : vec)
@@ -101,7 +116,7 @@ bool Test::fetchValidateandPrintFootfallData(std::string filename,std::string ou
             	v.push_back(std::stoi(rowvec));
         	}
         	intoutput.push_back(v); 
-  	}
+  	}*/
     return {std::equal(validData.begin(), validData.end(), intoutput.begin())};
 	
     
