@@ -16,7 +16,7 @@ public:
     std::vector<std::vector<std::string>> fetchActualFootfallData();
 };
 
-/*namespace Test
+namespace Test
 {
 bool fetchValidateandPrintFootfallData(std::string);
-}*/
+}
