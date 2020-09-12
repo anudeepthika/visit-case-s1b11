@@ -21,16 +21,13 @@ jobs:
       run: g++ -Wall -Wextra -Werror --coverage -o SenderExe Sender/Sender.cpp
       
     - name: build SenderTest
-      run: g++ -Wall -Wextra -Werror --coverage -o SenderTestExe Sender/*.cpp
+      run: g++ -Wall -Wextra -Werror --coverage -o SenderTestExe Sender/SenderTest.cpp
       
     - name: build Receiver
       run: g++ -Wall -Wextra -Werror --coverage -o ReceiverExe Receiver/Receiver.cpp
       
     - name: static analysis
       run: cppcheck --enable=all --error-exitcode=1 .
-      
-    - name: run Sender
-      run: ./SenderExe
       
     - name: run SenderTest
       run: ./SenderTestExe
