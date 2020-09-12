@@ -22,9 +22,6 @@ jobs:
       
     - name: run SenderTest
       run: ./SenderTestExe
-      
-    - name: run
-      run: ./SenderExe | ./ReceiverExe
     
     - name: coverage report Sender
       run: gcov -r Sender/Sender.cpp
