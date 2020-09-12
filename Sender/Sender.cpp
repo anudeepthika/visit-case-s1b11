@@ -99,8 +99,8 @@ bool Test::fetchValidateandPrintFootfallData(std::string filename)
     
 }
 
-/*int main()
+int main()
 {
     std::cout<<Test::fetchValidateandPrintFootfallData("test-data/samplevisit1.csv")<<std::endl;
     return 0;
-}*/
+}
