@@ -91,7 +91,7 @@ bool Test::fetchValidateandPrintFootfallData(std::string filename,std::string ou
     std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
     printValiddata(validData);
-	fstream fin;  
+	std::fstream fin;  
         fin.open(outputname);
 	//std::vector<std::vector<std::string>> output = 	filereader2.fetchActualFootfallData();
 	std::vector<std::vector<int>> intoutput;
