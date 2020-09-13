@@ -90,6 +90,10 @@ void Test::fetchValidateandPrintFootfallData(std::string filename)
     std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
     // data is now only non-negative integer because person id, date time are non negative integers
+	int x = actualdata.size()/2;
+	int y = validData.size();
+	if(y<x)
+		std::cout<<"No valid data"<<std::endl;
     printValiddata(validData);
 }
 int main()
