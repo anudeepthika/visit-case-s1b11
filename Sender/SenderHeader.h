@@ -18,5 +18,5 @@ public:
 
 namespace Test
 {
-bool fetchValidateandPrintFootfallData(std::string);
+void fetchValidateandPrintFootfallData(std::string);
 }
