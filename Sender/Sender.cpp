@@ -94,7 +94,8 @@ void Test::fetchValidateandPrintFootfallData(std::string filename)
 	int y = validData.size();
 	if(y<x)
 		std::cout<<"No valid data"<<std::endl;
-    printValiddata(validData);
+	else
+    		printValiddata(validData);
 }
 int main()
 {
