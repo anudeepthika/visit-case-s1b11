@@ -16,7 +16,7 @@ std::vector<std::vector<std::string>> CSVReader::fetchActualFootfallData()
     // Iterate through each line and split the content using delimeter
     file.open(fileName);
     getline(file,line);
-    std::cout<<line<<std::endl;
+    //std::cout<<line<<std::endl;
     while (getline(file, line))
     {
         // used for breaking words
@@ -71,6 +71,7 @@ std::vector<std::vector<int>> removeInvalidEntries(std::vector<std::vector<std::
 
 void printValiddata(std::vector<std::vector<int>> &data)
 {
+    std::cout<<"id,hour,minute,second,day,date,month,year"<<std::endl;
       for (std::vector<int> vec : data)
     {
         for (int rowdata : vec)
