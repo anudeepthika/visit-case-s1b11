@@ -93,6 +93,6 @@ void Test::fetchValidateandPrintFootfallData(std::string filename)
 }
 int main()
 {
-    Test::fetchValidateandPrintFootfallData("test-data/visitdata2.csv");
+    Test::fetchValidateandPrintFootfallData("test-data/visitdata1.csv");
     return 0;
 }
