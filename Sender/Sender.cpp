@@ -7,10 +7,10 @@
 #include <algorithm>
 #include "SenderHeader.h"
 
-std::vector<std::vector<std::string> > CSVReader::fetchActualFootfallData()
+std::vector<std::vector<std::string>> CSVReader::fetchActualFootfallData()
 {
     std::fstream file;
-    std::vector<std::vector<std::string> > dataList;
+    std::vector<std::vector<std::string>> footfallData;
     std::string line = "";
     std::string data = "";
     // Iterate through each line and split the content using delimeter
@@ -22,28 +22,27 @@ std::vector<std::vector<std::string> > CSVReader::fetchActualFootfallData()
         // used for breaking words
         std::stringstream str(line);
 
-        // read every column data of a row and
-        // store it in a string variable, 'word'
-        std::vector<std::string> vec;
+        // read every column data of a row and store it in a string variable, 'data'
+        std::vector<std::string> footfallEntry; //one footfall data
         while (getline(str, data, ','))
         {
             // add all the column data
             // of a row to a vector vec
-            vec.push_back(data);
+            footfallEntry.push_back(data);
         }
-        dataList.push_back(vec);
+        footfallData.push_back(footfallEntry);
      }
     file.close();
-    return dataList;
+    return footfallData;
 }
 
 bool isnumber(std::string s)
 {
     for (unsigned int i = 0; i < s.length(); i++)
-		if (isdigit(s[i]) == false)
-			return false;
+	if (isdigit(s[i]) == false)
+		return false;
 
-	return true;    
+    return true;    
 }
 
 std::vector<int> getValidRow(std::vector<std::string>& rowvec)
@@ -52,7 +51,7 @@ std::vector<int> getValidRow(std::vector<std::string>& rowvec)
 	for (std::string data : rowvec)
        		 {
             		if(isnumber(data)==true)
-			validRow.push_back(std::stoi(data));
+			validRow.push_back(stoi(data));
         	 }
 	return validRow;
 }
@@ -81,49 +80,19 @@ void printValiddata(std::vector<std::vector<int>> &data)
         std::cout << std::endl; 
      }
 }
-bool Test::fetchValidateandPrintFootfallData(std::string filename,std::string outputname)
+void Test::fetchValidateandPrintFootfallData(std::string filename)
 {	
    // Creating an object of CSVfile reader
-	CSVReader filereader1(filename,",");
-	//CSVReader filereader2(outputname,",");
+	CSVReader filereader(filename,",");
     // Get the data from CSV File
-    std::vector<std::vector<std::string>> actualdata  = filereader1.fetchActualFootfallData();
+    std::vector<std::vector<std::string>> actualdata  = filereader.fetchActualFootfallData();
     std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
     // Print the content
+    // data is now only non-negative integer because person id, date time are non negative integers
     printValiddata(validData);
-	std::fstream fin;  
-        fin.open(outputname);
-	//std::vector<std::vector<std::string>> output = 	filereader2.fetchActualFootfallData();
-	std::vector<std::vector<int>> intoutput;
-	std::string line1 = "";
-    	std::string data1 = "";
-	while (getline(fin, line1))
-    	{
-		std::stringstream str1(line1);
-		std::vector<int> vec;
-		while (getline(str1, data1, ','))
-		{
-		    vec.push_back(std::stoi(data1));
-		}
-		intoutput.push_back(vec);
-     	}
-    	fin.close();
-	/*for (std::vector<std::string> vec : output)
-   	{
-        	std::vector<int> v;
-		for (std::string rowvec : vec)
-       	 	{
-            	v.push_back(std::stoi(rowvec));
-        	}
-        	intoutput.push_back(v); 
-  	}*/
-    return {std::equal(validData.begin(), validData.end(), intoutput.begin())};
-	
-    
 }
-
-/*int main()
+int main()
 {
-    std::cout<<Test::fetchValidateandPrintFootfallData("test-data/samplevisit1.csv")<<std::endl;
+    Test::fetchValidateandPrintFootfallData("test-data/visitdata2.csv");
     return 0;
-}*/
+}
