@@ -24,7 +24,7 @@ jobs:
       run: ./SenderTestExe
     
     - name: coverage report Sender
-      run: gcov -r Sender/Sender.cpp
+      run: gcov -r Sender.cpp
       
     - name: coverage report Receiver
-      run: gcov -r Receiver/Receiver.cpp
+      run: gcov -r Receiver.cpp
