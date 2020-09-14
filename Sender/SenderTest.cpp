@@ -8,16 +8,26 @@
 #include <vector>
 #include <algorithm>
 
-TEST_CASE("when footfall data containing invalid data is read by sender then it prints the valid data") 
+TEST_CASE("when footfall data containing all valid data is read by sender then it prints all the valid data") 
 {
      Test::fetchValidateandPrintFootfallData("test-data/visitdata1.csv");
-     std::ifstream fin1("OutputSenderTestData/visitdataouttest1.csv");
-    std::string testDataBuffer((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
+     std::ifstream fin1("OutputSenderTestData/visitdataouttest1.csv"); //testing data which has the output that is to be obtained
+    std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
     fin1.close();
-    std::ifstream fin2("OutputSenderTestData/visitdataout1.csv");
-    std::string obtainedDataBuffer((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
+    std::ifstream fin2("OutputSenderTestData/visitdataout1.csv"); //visitdataout1.csv is the file to which sender writes
+    std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
     fin2.close();
-    REQUIRE(testDataBuffer == obtainedDataBuffer);
-    
+    REQUIRE(testData == obtainedData);    
 }
 
+TEST_CASE("when footfall data containing some invalid data is read by sender then it prints the valid data only and removes invalid data") 
+{
+     Test::fetchValidateandPrintFootfallData("test-data/visitdata2.csv");
+     std::ifstream fin1("OutputSenderTestData/visitdataouttest1.csv");
+    std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
+    fin1.close();
+    std::ifstream fin2("OutputSenderTestData/visitdataout1.csv");
+    std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
+    fin2.close();
+    REQUIRE(testData == obtainedData);    
+}
