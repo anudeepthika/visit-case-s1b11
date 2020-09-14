@@ -41,5 +41,5 @@ TEST_CASE("when footfall data containing large number of more invalid data is re
     std::ifstream fin2("OutputSenderTestData/visitdataout1.txt");
     std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
     fin2.close();
-    REQUIRE(obtainedData == " ");    
+    REQUIRE(obtainedData == "\n");    
 }
