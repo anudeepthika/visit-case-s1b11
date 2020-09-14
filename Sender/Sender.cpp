@@ -103,6 +103,7 @@ void Test::fetchValidateandPrintFootfallData(std::string filename)
 		std::ofstream fout;
 		fout.open("OutputSenderTestData/visitdataout1.csv");
 		std::cout<<"No valid data"<<std::endl;
+		fout<<"\n";
 		fout.close();
 	}
 	else
