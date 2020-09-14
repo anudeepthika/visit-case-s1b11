@@ -8,6 +8,13 @@
 TEST_CASE("when footfall data containing invalid data is read by sender then it prints the valid data") 
 {
      Test::fetchValidateandPrintFootfallData("test-data/visitdata1.csv");
+     std::ifstream fin1("OutputSenderTestData/visitdataouttest1.csv");
+    string testDataBuffer((istreambuf_iterator<char>(fin1)), istreambuf_iterator<char>());
+    fin1.close();
+    std::ifstream fin2("OutputSenderTestData/visitdataout1.csv");
+    string obtainedDataBuffer((istreambuf_iterator<char>(fin2)), istreambuf_iterator<char>());
+    fin2.close();
+    REQUIRE(testDataBuffer == obtainedDataBuffer);
     
 }
 
