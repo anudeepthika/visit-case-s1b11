@@ -71,15 +71,21 @@ std::vector<std::vector<int>> removeInvalidEntries(std::vector<std::vector<std::
 
 void printValiddata(std::vector<std::vector<int>> &data)
 {
-    std::cout<<"id,hour,minute,second,day,date,month,year"<<std::endl;
+    std::ofstream fout;
+	fout.open("OutputSenderTestData/visitdataout1.csv");
+	std::cout<<"id,hour,minute,second,day,date,month,year"<<std::endl;
+	fout << "id" << "," << "hour" << "," << "minute" << "," << "second" << "," << "day" << "," << "date" <<"," << "month" <<"," << "year" <<"\n";
       for (std::vector<int> vec : data)
     {
         for (int rowdata : vec)
         {
             std::cout << rowdata << ",";
+		fout << rowdata << ",";
         }
+	      fout<<"\n";
         std::cout << std::endl; 
      }
+	fout.close();
 }
 void Test::fetchValidateandPrintFootfallData(std::string filename)
 {	
@@ -97,8 +103,8 @@ void Test::fetchValidateandPrintFootfallData(std::string filename)
 	else
     		printValiddata(validData);
 }
-int main()
+/*int main()
 {
     Test::fetchValidateandPrintFootfallData("test-data/visitdata2.csv");
     return 0;
-}
+}*/
