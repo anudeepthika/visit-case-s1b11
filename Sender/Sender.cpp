@@ -99,7 +99,10 @@ void Test::fetchValidateandPrintFootfallData(std::string filename)
 	int halfofFetchedEntriesfromSensorData = actualdata.size()/2;
 	int totalValidEntries = validData.size();
 	if(totalValidEntries < halfofFetchedEntriesfromSensorData)
+		std::ofstream fout;
+		fout.open("OutputSenderTestData/visitdataout1.csv");
 		std::cout<<"No valid data"<<std::endl;
+		fout.close();
 	else
     		printValiddata(validData);
 }
