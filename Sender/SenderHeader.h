@@ -18,5 +18,6 @@ public:
 
 namespace Sender
 {
-void fetchValidateandPrintFootfallData(std::string);
+    void fetchValidateandPrintFootfallData(std::string);
+    void fetchValidateReconcileandPrintFootfallData(std::string,std::string);
 }
