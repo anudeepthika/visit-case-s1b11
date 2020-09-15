@@ -87,15 +87,22 @@ void printValiddata(std::vector<std::vector<int>> &data)
      }
 	fout.close();
 }
+bool is_file_exists(std::string filename)
+{
+	std::ifstream infile(filename);
+    return infile.good();	
+}
 void Test::fetchValidateandPrintFootfallData(std::string filename)
 {	
-   // Creating an object of CSVfile reader
+   if(is_file_exists(filename)==true)
+   {
+	// Creating an object of CSVfile reader
 	CSVReader filereader(filename,",");
-    // Get the data from CSV File
-    std::vector<std::vector<std::string>> actualdata  = filereader.fetchActualFootfallData();
-    std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
-    // Print the content
-    // data is now only non-negative integer because person id, date time are non negative integers
+	// Get the data from CSV File
+	std::vector<std::vector<std::string>> actualdata  = filereader.fetchActualFootfallData();
+	std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
+	// Print the content
+    	// data is now only non-negative integer because person id, date time are non negative integers
 	int halfofFetchedEntriesfromSensorData = actualdata.size()/2;
 	int totalValidEntries = validData.size();
 	if(totalValidEntries < halfofFetchedEntriesfromSensorData)
@@ -108,6 +115,12 @@ void Test::fetchValidateandPrintFootfallData(std::string filename)
 	}
 	else
     		printValiddata(validData);
+   }
+   else
+   {
+	   std::cout<<"couldn't find file"<<std::endl;
+   }
+		
 }
 /*int main()
 {
