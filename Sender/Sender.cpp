@@ -119,8 +119,9 @@ std::vector<std::vector<int>> reconcile(std::vector<std::vector<int>> valid, std
 	{
 		if (i < v.size())
 		{
-			if (m[i] != v[i])
-				v.insert(v.begin() + i, m[i]);
+			/*if (m[i] != v[i])
+			v.insert(v.begin() + i, m[i]);*/
+			m[i]!=v[i] ? v.insert(v.begin() + i, m[i]);
 		}
 		else
 			v.insert(v.begin() + i, m[i]);
