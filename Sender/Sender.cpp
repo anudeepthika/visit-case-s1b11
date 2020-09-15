@@ -94,7 +94,7 @@ bool is_file_exists(std::string filename)
 }
 
 
-std::vector<std::vector<int>> getintypetmanualdata(std::vector<std::vector<std::string>> manualdata)
+std::vector<std::vector<int>> getintypemanualdata(std::vector<std::vector<std::string>> manualdata)
 {
 	std::vector<std::vector<int>> manual;
 	for(std::vector<std::string> vec:manualdata)
