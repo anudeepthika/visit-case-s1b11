@@ -109,7 +109,13 @@ std::vector<std::vector<int>> getinttypemanualdata(std::vector<std::vector<std::
 	}
 	return manual;
 }
-
+std::vector<std::vector<int>> compin(std::vector<int> mi,std::vector<int> vi , std::vector<std::vector<int>> vec, unsigned int i)
+{
+	if(mi != vi)
+	vec.insert(vec.begin() + i, mi);	
+	return vec;
+		
+}
 std::vector<std::vector<int>> reconcile(std::vector<std::vector<int>> valid, std::vector<std::vector<int>> manual)
 {
 	std::vector<std::vector<int>> v = valid;
@@ -121,7 +127,8 @@ std::vector<std::vector<int>> reconcile(std::vector<std::vector<int>> valid, std
 		{
 			/*if (m[i] != v[i])
 			v.insert(v.begin() + i, m[i]);*/
-			m[i]!=v[i] ? v.insert(v.begin() + i, m[i]);
+			v = compin(m[i],v[i],v,i)
+			
 		}
 		else
 			v.insert(v.begin() + i, m[i]);
