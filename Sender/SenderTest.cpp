@@ -77,3 +77,12 @@ TEST_CASE("when sender reads both sensor and manual data and sensor data has mor
     fin2.close();
     REQUIRE(testData == obtainedData);    
 }
+
+TEST_CASE("when sender reads both sensor and manual data and either of them are not existing files then it file doesn't exist to the console") 
+{
+     Sender::fetchValidateReconcileandPrintFootfallData("abc.csv","test-data/xyz.csv");
+    std::ifstream fin2("OutputSenderTestData/visitdataout1.txt"); // sender writes to  this
+    std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
+    fin2.close();
+    REQUIRE(obtainedData == "file doesn't exist");    
+}
