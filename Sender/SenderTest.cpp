@@ -35,9 +35,6 @@ TEST_CASE("when footfall data containing some invalid data is read by sender the
 TEST_CASE("when footfall data containing large number of more invalid data is read by sender then it prints No valid data to console") 
 {
      Sender::fetchValidateandPrintFootfallData("test-data/invalidvisitdata1.csv");
-     /*std::ifstream fin1("OutputSenderTestData/nodata.txt");
-    std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
-    fin1.close();*/
     std::ifstream fin2("OutputSenderTestData/visitdataout1.txt");
     std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
     fin2.close();
@@ -55,14 +52,27 @@ TEST_CASE("when a non-existing footfall data csv file is read by sender then it 
     fin2.close();
     REQUIRE(obtainedData == "file doesn't exist");    
 }
-TEST_CASE("reconcile") 
+TEST_CASE("when sender reads both sensor and manual data then it reconciles the sensor data, inserts the missed entries, writes to the txt file and prints the same to the console") 
 {
      Sender::fetchValidateReconcileandPrintFootfallData("test-data/visitdata2.csv","test-data/manuallog2.csv");
      
-    std::ifstream fin1("OutputSenderTestData/reconciletest.txt");
+    std::ifstream fin1("OutputSenderTestData/reconciletest.txt"); //testing file
     std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
     fin1.close();
-    std::ifstream fin2("OutputSenderTestData/visitdataout1.txt");
+    std::ifstream fin2("OutputSenderTestData/visitdataout1.txt"); // sender writes to  this
+    std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
+    fin2.close();
+    REQUIRE(testData == obtainedData);    
+}
+
+TEST_CASE("when sender reads both sensor and manual data and sensor data has more invalid entries then it takes only manual data assuming that sensor is malfunctioning, writes to the txt file and prints the same to the console") 
+{
+     Sender::fetchValidateReconcileandPrintFootfallData("test-data/invalidvisitdata1.csv","test-data/manuallog2.csv");
+     
+    std::ifstream fin1("OutputSenderTestData/reconciletest.txt"); //testing file
+    std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
+    fin1.close();
+    std::ifstream fin2("OutputSenderTestData/visitdataout1.txt"); // sender writes to  this
     std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
     fin2.close();
     REQUIRE(testData == obtainedData);    
