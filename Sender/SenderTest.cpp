@@ -43,3 +43,15 @@ TEST_CASE("when footfall data containing large number of more invalid data is re
     fin2.close();
     REQUIRE(obtainedData == "\n");    
 }
+
+TEST_CASE("when a non-existing footfall data csv file is read by sender then it prints couldn't find file to console") 
+{
+     Test::fetchValidateandPrintFootfallData("test-data/xyz.csv");
+     /*std::ifstream fin1("OutputSenderTestData/nodata.txt");
+    std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
+    fin1.close();*/
+    std::ifstream fin2("OutputSenderTestData/visitdataout1.txt");
+    std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
+    fin2.close();
+    REQUIRE(obtainedData == "\n");    
+}
