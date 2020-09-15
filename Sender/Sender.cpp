@@ -127,11 +127,8 @@ std::vector<std::vector<int>> reconcile(std::vector<std::vector<int>> valid, std
 	}
 	return v;
 }
-
-void Sender::fetchValidateReconcileandPrintFootfallData(std::string filename,std::string manuallog)
+void process(std::string filename,std::string manuallog)
 {
-	if(is_file_exists(filename)==true && is_file_exists(manuallog)==true)
-   {
 	// Creating an object of CSVfile reader
 	CSVReader filereader(filename,",");
 	// Get the data from CSV File
@@ -147,11 +144,6 @@ void Sender::fetchValidateReconcileandPrintFootfallData(std::string filename,std
 	int totalValidEntries = validData.size();
 	if(totalValidEntries < halfofFetchedEntriesfromSensorData)
 	{
-		/*std::ofstream fout;
-		fout.open("OutputSenderTestData/visitdataout1.txt");
-		std::cout<<"No valid data"<<std::endl;
-		fout<<"No valid data";
-		fout.close();*/
 		printValiddata(manualdata); //sensor is completely malfunctioning and take manual data
 	}
 	else
@@ -159,16 +151,24 @@ void Sender::fetchValidateReconcileandPrintFootfallData(std::string filename,std
     		std::vector<std::vector<int>> reconcileddata = reconcile(validData,manualdata);
 		printValiddata(reconcileddata);
 	}
-   }
-   else
-   {
-	   std::ofstream fout;
+}
+	
+	
+void Sender::fetchValidateReconcileandPrintFootfallData(std::string filename,std::string manuallog)
+{
+   	if(is_file_exists(filename)==true && is_file_exists(manuallog)==true)
+   	{
+		process(filename,manuallog);
+   	}
+  	else
+   	{
+	   	std::ofstream fout;
 		fout.open("OutputSenderTestData/visitdataout1.txt");
 		std::cout<<"file doesn't exist"<<std::endl;
 		fout<<"file doesn't exist";
 		fout.close();
 	  
-   }	
+   	}	
 }
 
 
