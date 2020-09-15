@@ -127,7 +127,7 @@ std::vector<std::vector<int>> reconcile(std::vector<std::vector<int>> valid, std
 		{
 			/*if (m[i] != v[i])
 			v.insert(v.begin() + i, m[i]);*/
-			v = compin(m[i],v[i],v,i)
+			v = compin(m[i],v[i],v,i);
 			
 		}
 		else
