@@ -56,7 +56,7 @@ TEST_CASE("when sender reads both sensor and manual data then it reconciles the 
 {
      Sender::fetchValidateReconcileandPrintFootfallData("test-data/visitdata2.csv","test-data/manuallog2.csv");
      
-    std::ifstream fin1("OutputSenderTestData/reconciletest.txt"); //testing file
+    std::ifstream fin1("OutputSenderTestData/reconciletest2.txt"); //testing file
     std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
     fin1.close();
     std::ifstream fin2("OutputSenderTestData/visitdataout1.txt"); // sender writes to  this
@@ -69,7 +69,7 @@ TEST_CASE("when sender reads both sensor and manual data and sensor data has mor
 {
      Sender::fetchValidateReconcileandPrintFootfallData("test-data/invalidvisitdata1.csv","test-data/manuallog2.csv");
      
-    std::ifstream fin1("OutputSenderTestData/reconciletest.txt"); //testing file
+    std::ifstream fin1("OutputSenderTestData/reconciletest2.txt"); //testing file
     std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
     fin1.close();
     std::ifstream fin2("OutputSenderTestData/visitdataout1.txt"); // sender writes to  this
