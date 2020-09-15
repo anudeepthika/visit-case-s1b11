@@ -93,13 +93,29 @@ bool is_file_exists(std::string filename)
     return infile.good();	
 }
 
+
+std::vector<std::vector<int>> getintypetmanualdata(std::vector<std::vector<std::string>> manualdata)
+{
+	std::vector<std::vector<int>> manual;
+	for(std::vector<std::string> vec:manualdata)
+	{
+		std::vector<int> row;
+           	for (std::string data : vec)
+       		 {
+			row.push_back(stoi(data));
+        	 }
+		
+		manual.push_back(row);
+	}
+	return manual;
+}
+
 std::vector<std::vector<int>> reconcile(std::vector<std::vector<int>> valid, std::vector<std::vector<int>> manual)
 {
 	std::vector<std::vector<int>> v = valid;
 	std::vector<std::vector<int>> m = manual;
-	auto it = m.begin();
 
-	for (int i=0;i<m.size();i++)
+	for (unsigned int i=0;i<m.size();i++)
 	{
 		if (i < v.size())
 		{
@@ -122,7 +138,8 @@ void Sender::fetchValidateReconcileandPrintFootfallData(std::string filename,std
 	std::vector<std::vector<std::string>> actualdata  = filereader.fetchActualFootfallData();
 	CSVReader manualfilereader(manuallog,",");
 	// Get the data from CSV File
-	std::vector<std::vector<std::string>> manualdata  = manualfilereader.fetchActualFootfallData();
+	std::vector<std::vector<std::string>> manualData  = manualfilereader.fetchActualFootfallData();
+	std::vector<std::vector<int>> manualdata = getinttypemanualdata(manualData);	
 	std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
 	// Print the content
     	// data is now only non-negative integer because person id, date time are non negative integers
