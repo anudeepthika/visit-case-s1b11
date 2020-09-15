@@ -92,6 +92,69 @@ bool is_file_exists(std::string filename)
 	std::ifstream infile(filename);
     return infile.good();	
 }
+
+std::vector<std::vector<int>> reconcile(std::vector<std::vector<int>> valid, std::vector<std::vector<int>> manual)
+{
+	std::vector<std::vector<int>> v = valid;
+	std::vector<std::vector<int>> m = manual;
+	auto it = m.begin();
+
+	for (int i=0;i<m.size();i++)
+	{
+		if (i < v.size())
+		{
+			if (m[i] != v[i])
+				v.insert(v.begin() + i, m[i]);
+		}
+		else
+			v.insert(v.begin() + i, m[i]);
+	}
+	return v;
+}
+
+void Sender::fetchValidateReconcileandPrintFootfallData(std::string filename,std::string manuallog)
+{
+	if(is_file_exists(filename)==true && is_file_exists(manuallog)==true)
+   {
+	// Creating an object of CSVfile reader
+	CSVReader filereader(filename,",");
+	// Get the data from CSV File
+	std::vector<std::vector<std::string>> actualdata  = filereader.fetchActualFootfallData();
+	CSVReader manualfilereader(manuallog,",");
+	// Get the data from CSV File
+	std::vector<std::vector<std::string>> manualdata  = manualfilereader.fetchActualFootfallData();
+	std::vector<std::vector<int>> validData  = removeInvalidEntries(actualdata); //removes rows containing empty data or junk values(like character strings) or negative numbers
+	// Print the content
+    	// data is now only non-negative integer because person id, date time are non negative integers
+	int halfofFetchedEntriesfromSensorData = actualdata.size()/2;
+	int totalValidEntries = validData.size();
+	if(totalValidEntries < halfofFetchedEntriesfromSensorData)
+	{
+		/*std::ofstream fout;
+		fout.open("OutputSenderTestData/visitdataout1.txt");
+		std::cout<<"No valid data"<<std::endl;
+		fout<<"No valid data";
+		fout.close();*/
+		printValiddata(manualdata); //sensor is completely malfunctioning and take manual data
+	}
+	else
+	{
+    		std::vector<std::vector<int>> reconcileddata = reconcile(validData,manualdata);
+		printValiddata(reconcileddata);
+	}
+   }
+   else
+   {
+	   std::ofstream fout;
+		fout.open("OutputSenderTestData/visitdataout1.txt");
+		std::cout<<"file doesn't exist"<<std::endl;
+		fout<<"file doesn't exist";
+		fout.close();
+	  
+   }	
+}
+
+
 void Sender::fetchValidateandPrintFootfallData(std::string filename)
 {	
    if(is_file_exists(filename)==true)
