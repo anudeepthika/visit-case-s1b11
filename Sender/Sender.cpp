@@ -118,7 +118,12 @@ void Test::fetchValidateandPrintFootfallData(std::string filename)
    }
    else
    {
-	   std::cout<<"couldn't find file"<<std::endl;
+	   std::ofstream fout;
+		fout.open("OutputSenderTestData/visitdataout1.txt");
+		std::cout<<"couldn't find file"<<std::endl;
+		fout<<"\n";
+		fout.close();
+	  
    }
 		
 }
