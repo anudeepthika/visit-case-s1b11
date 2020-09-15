@@ -92,7 +92,7 @@ bool is_file_exists(std::string filename)
 	std::ifstream infile(filename);
     return infile.good();	
 }
-void Test::fetchValidateandPrintFootfallData(std::string filename)
+void Sender::fetchValidateandPrintFootfallData(std::string filename)
 {	
    if(is_file_exists(filename)==true)
    {
