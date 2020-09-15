@@ -59,11 +59,11 @@ TEST_CASE("reconcile")
 {
      Sender::fetchValidateReconcileandPrintFootfallData("test-data/visitdata2.csv","test-data/manuallog2.csv");
      
-     /*std::ifstream fin1("OutputSenderTestData/nodata.txt");
+    std::ifstream fin1("OutputSenderTestData/reconciletest.txt");
     std::string testData((std::istreambuf_iterator<char>(fin1)), std::istreambuf_iterator<char>());
-    fin1.close();*/
-    /*std::ifstream fin2("OutputSenderTestData/visitdataout1.txt");
+    fin1.close();
+    std::ifstream fin2("OutputSenderTestData/visitdataout1.txt");
     std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
-    fin2.close();*/
-    REQUIRE(1==1);    
+    fin2.close();
+    REQUIRE(testData == obtainedData);    
 }
