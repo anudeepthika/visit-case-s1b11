@@ -32,7 +32,7 @@ TEST_CASE("when footfall data containing some invalid data is read by sender the
     REQUIRE(testData == obtainedData);    
 }
 
-TEST_CASE("when footfall data containing large number of more invalid data is read by sender then it prints no valid data to console") 
+TEST_CASE("when footfall data containing large number of more invalid data is read by sender then it prints No valid data to console") 
 {
      Sender::fetchValidateandPrintFootfallData("test-data/invalidvisitdata1.csv");
      /*std::ifstream fin1("OutputSenderTestData/nodata.txt");
@@ -41,10 +41,10 @@ TEST_CASE("when footfall data containing large number of more invalid data is re
     std::ifstream fin2("OutputSenderTestData/visitdataout1.txt");
     std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
     fin2.close();
-    REQUIRE(obtainedData == "\n");    
+    REQUIRE(obtainedData == "No valid data");    
 }
 
-TEST_CASE("when a non-existing footfall data csv file is read by sender then it prints couldn't find file to console") 
+TEST_CASE("when a non-existing footfall data csv file is read by sender then it prints file doesn't exist to console") 
 {
      Sender::fetchValidateandPrintFootfallData("test-data/xyz.csv");
      /*std::ifstream fin1("OutputSenderTestData/nodata.txt");
@@ -53,5 +53,5 @@ TEST_CASE("when a non-existing footfall data csv file is read by sender then it 
     std::ifstream fin2("OutputSenderTestData/visitdataout1.txt");
     std::string obtainedData((std::istreambuf_iterator<char>(fin2)), std::istreambuf_iterator<char>());
     fin2.close();
-    REQUIRE(obtainedData == "\n");    
+    REQUIRE(obtainedData == "file doesn't exist");    
 }
