@@ -110,7 +110,7 @@ void Sender::fetchValidateandPrintFootfallData(std::string filename)
 		std::ofstream fout;
 		fout.open("OutputSenderTestData/visitdataout1.txt");
 		std::cout<<"No valid data"<<std::endl;
-		fout<<"\n";
+		fout<<"No valid data";
 		fout.close();
 	}
 	else
@@ -120,15 +120,10 @@ void Sender::fetchValidateandPrintFootfallData(std::string filename)
    {
 	   std::ofstream fout;
 		fout.open("OutputSenderTestData/visitdataout1.txt");
-		std::cout<<"couldn't find file"<<std::endl;
-		fout<<"\n";
+		std::cout<<"file doesn't exist"<<std::endl;
+		fout<<"file doesn't exist";
 		fout.close();
 	  
    }
 		
 }
-/*int main()
-{
-    Test::fetchValidateandPrintFootfallData("test-data/visitdata2.csv");
-    return 0;
-}*/
