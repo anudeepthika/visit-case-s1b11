@@ -216,7 +216,7 @@ void Sender::fetchValidateandPrintFootfallData(std::string filename)
 		
 }
 
-#ifndef TEST
+
 int main()
 {
     	std::string filename = "test-data/visitdata2.csv";
@@ -225,4 +225,3 @@ int main()
     return 0;
 }
 
-#endif
