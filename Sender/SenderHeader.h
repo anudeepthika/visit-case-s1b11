@@ -5,7 +5,7 @@
 #include <string>
 #include<sstream>
 #include <algorithm>
-#define TEST
+
 
 class CSVReader
 {
