@@ -1,3 +1,4 @@
+#ifdef TEST
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 
 #include "catch.hpp"
@@ -86,3 +87,5 @@ TEST_CASE("when sender reads both sensor and manual data and either of them are 
     fin2.close();
     REQUIRE(obtainedData == "file doesn't exist");    
 }
+
+#endif
