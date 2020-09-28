@@ -215,7 +215,7 @@ void Sender::fetchValidateandPrintFootfallData(std::string filename)
    }
 		
 }
-
+/*
 
 int main()
 {
@@ -224,4 +224,4 @@ int main()
 	Sender::fetchValidateReconcileandPrintFootfallData(filename,manuallog);
     return 0;
 }
-
+*/
